@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html ng-app="app" ng-controller="AppController">
+
+<head>
+
+    <meta charset="utf-8">
+    <title>...</title>
+
+    <!-- Material Design Lite Library -->
+    <link rel="stylesheet" href="resources/assets/mdl/material.yellow-indigo.min.css">
+    <link rel="stylesheet" href="resources/assets/mdl/index.css">
+    <script src="resources/assets/mdl/material.min.js"></script>
+
+    <!-- Material Design Icons Library -->
+    <link rel="stylesheet" href="resources/assets/google-fonts/material-icons/index.css">
+
+    <!-- Angular Library -->
+    <script src="resources/assets/angular/angular.min.js"></script>
+    <script src="resources/assets/angular/angular-animate.js"></script>
+    <script src="resources/assets/angular/angular-route.js"></script>
+    <script src="resources/assets/angular/angular-aria.js"></script>
+    <script src="resources/assets/angular/angular-messages.js"></script>
+
+    <!-- Angular CSS -->
+    <link rel="stylesheet" href="resources/assets/angular/animate.css"/>
+
+    <!-- Angular Material Library -->
+    <script src="resources/assets/angular-material/angular-material.js"></script>
+    <link rel="stylesheet" href="resources/assets/angular-material/angular-material.css">
+    <link rel="stylesheet" href="resources/assets/angular-material/index.css">
+
+    <!-- App JS -->
+    <script src="resources/assets/@/js/index.js"></script>
+    <script src="resources/assets/@/js/context.js"></script>
+
+    <!-- App CSS -->
+    <link rel="stylesheet" href="resources/assets/@/css/index.css"/>
+
+    <!--<link rel="stylesheet" href="mdl-jquery-modal-dialog.css">-->
+    <!--<script src="mdl-jquery-modal-dialog.js"></script>-->
+
+    <script type="text/javascript">
+        angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
+    </script>
+
+    <!-- Uses a header that contracts as the page scrolls down. -->
+    <style>
+        .demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type  {
+            padding-right: 0;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="page-wrapper" ng-show="loaded">
+
+        <!-- Always shows a header, even in smaller screens. -->
+        <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+            <header class="mdl-layout__header" ng-controller="DrawerController">
+                <div class="mdl-layout__header-row">
+                    <!-- Title -->
+                    <span class="mdl-layout-title">{{ title }}</span>
+                    <!-- Add spacer, to align navigation to the right -->
+                    <div class="mdl-layout-spacer"></div>
+                    <!-- Navigation. We hide it in small screens. -->
+                    <nav class="mdl-navigation mdl-layout--large-screen-only">
+                        <a class="mdl-navigation__link" href="{{ menu.href }}" ng-repeat="menu in menus">{{ menu.label }}</a>
+                    </nav>
+                </div>
+            </header>
+            <div class="mdl-layout__drawer" ng-controller="DrawerController">
+                <span class="mdl-layout-title">{{ drawer.label }}</span>
+                <nav class="mdl-navigation">
+                    <a class="mdl-navigation__link" href="{{ menu.href }}" ng-repeat="menu in menus">{{ menu.label }}</a>
+                </nav>
+            </div>
+            <main class="mdl-layout__content">
+                <div class="page-content">
+
+                    <!-- Your content goes here -->
+
+                    <div class="view-animate-container">
+                        <div ng-view class="view-animate"></div>
+                    </div>
+
+                </div>
+
+            </main>
+        </div>
+
+    </div>
+
+
+    <div ng-controller="DrawerController">
+
+        <style type="text/css">
+            .mdl-layout__drawer.is-visible {
+                width: {{drawer.width}}px;
+            }
+            .mdl-layout--fixed-drawer:not(.is-small-screen) > .mdl-layout__header {
+                margin-left: {{drawer.width}}px;
+                width: calc(100% - {{drawer.width}}px);
+            }
+            @media screen and (min-width: 1024px) {
+                .mdl-layout--fixed-drawer > .mdl-layout__content {
+                    margin-left: {{drawer.width}}px;
+                }
+            }
+        </style>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+{
+  "name": "gennesis",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "build-linux": "electron-packager . Packager --platform=linux --arch=all --version=0.28.2 --out=/home/william/Documentos/ELECTRON/dist/ --icon=/home/william/Documentos/ELECTRON/packager/dist/resources/icon.ico --overwrite=true --asar=false",
+    "build-windows": "electron-packager . Packager --platform=win32 --arch=all --version=0.28.2 --out=/home/william/Documentos/ELECTRON/dist/ --icon=/home/william/Documentos/ELECTRON/packager/dist/resources/icon.ico  --overwrite=true --asar=false",
+    "build-mac": "electron-packager . Packager --platform=darwin --arch=all --version=0.28.2 --out=/home/william/Documentos/ELECTRON/dist/ --icon=/home/william/Documentos/ELECTRON/packager/dist/resources/icon.ico  --overwrite=true --asar=false",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "dracones.io",
+  "license": "MIT",
+  "dependencies": {
+    "debug": "^2.2.0",
+    "electron-prebuilt": "^0.30.4"
+  },
+  "devDependencies": {
+    "electron-packager": "^5.0.2",
+    "electron-prebuilt": "^0.30.6"
+  }
+}
