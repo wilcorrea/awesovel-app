@@ -1,7 +1,13 @@
+<form class="formly-card">
 
+    <formly-form model="vm.project" fields="vm.fields">
 
-<pre>$location.path() = {{$location.path()}}</pre>
-<pre>$route.current.templateUrl = {{$route.current.templateUrl}}</pre>
-<pre>$route.current.params = {{$route.current.params}}</pre>
-<pre>$route.current.scope.name = {{$route.current.scope.name}}</pre>
-<pre>$routeParams = {{$routeParams}}</pre>
+        <!-- Action -->
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                ng-click="vm.save($event)">
+            Save
+        </button>
+
+    </formly-form>
+
+</form>

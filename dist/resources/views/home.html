@@ -9,10 +9,10 @@
             <p>{{ _project.description }}</p>
         </div>
         <div class="mdl-card__actions mdl-card--border">
-            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="app/project/edit/{{ _project.id }}" title="{{ _project.path }}">
+            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="app/project/settings/{{ _project.id }}" title="{{ _project.path }}">
                 Open
             </a>
-            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" ng-click="close(_project.id)" ng-show="project === _project.id">
+            <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent" ng-click="close(_project.id)" ng-show="project === _project.id">
                 Close
             </a>
         </div>
