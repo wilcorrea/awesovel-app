@@ -1,7 +1,69 @@
 
+body {
+    background-color: #f0f0f0;
+}
+
+.formly-card {
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+    padding: 20px 0 20px 25px;
+    background-color: #fff;
+    border-radius: 2px;
+}
+.formly-card .mdl-textfield {
+    width: 100%;
+}
+.formly-field.formly-field-group {
+    width: 100%;
+}
+.formly-row {
+    padding: 0;
+    margin: 0 -15px;
+}
+
 .circle {
     position: fixed;
     bottom: 16px;
     right: 16px;
     z-index: 2;
+}
+
+.display-flex {
+    display: flex;
+}
+
+.flex-1 {
+    flex: 1;
+}
+
+.flex-2 {
+    flex: 2;
+}
+
+.flex-3 {
+    flex: 3;
+}
+
+.flex-4 {
+    flex: 4;
+}
+
+.flex-5 {
+    flex: 5;
+}
+
+.flex-6 {
+    flex: 6;
+}
+
+[class*="flex-"] {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+[class*="flex-"]:first-child {
+    padding-left: 0;
+}
+
+[class*="flex-"]:nth-last-child(2) {
+    padding-right: 0;
 }
