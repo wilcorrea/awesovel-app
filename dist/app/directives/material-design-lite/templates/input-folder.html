@@ -1,0 +1,12 @@
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--file"
+     ng-class="model[options.key] ? 'is-dirty' : ''">
+    <input class="mdl-textfield__input" type="text" ng-model="model[options.key]"/>
+    <label class="mdl-textfield__label">{{to.label ? to.label : to.placeholder}}</label>
+
+    <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
+        <i class="material-icons">folder</i>
+        <input type="file" resource="folder" target="{{options.key}}" webkitdirectory directory multiple
+               onchange="angular.element(this).scope().vm.onchange(this)"/>
+
+    </div>
+</div>

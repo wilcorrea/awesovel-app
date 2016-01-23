@@ -2666,7 +2666,7 @@ MaterialTabs.prototype.initTabs_ = function () {
    */
 MaterialTabs.prototype.resetTabState_ = function () {
     for (var k = 0; k < this.tabs_.length; k++) {
-        this.tabs_[k].classList.remove(this.CssClasses_.ACTIVE_CLASS);
+        //this.tabs_[k].classList.remove(this.CssClasses_.ACTIVE_CLASS);
     }
 };
 /**
@@ -2676,7 +2676,7 @@ MaterialTabs.prototype.resetTabState_ = function () {
    */
 MaterialTabs.prototype.resetPanelState_ = function () {
     for (var j = 0; j < this.panels_.length; j++) {
-        this.panels_[j].classList.remove(this.CssClasses_.ACTIVE_CLASS);
+        //this.panels_[j].classList.remove(this.CssClasses_.ACTIVE_CLASS);
     }
 };
 /**
@@ -2695,6 +2695,7 @@ MaterialTabs.prototype.init = function () {
    * @param {MaterialTabs} ctx The MaterialTabs object that owns the tab.
    */
 function MaterialTab(tab, ctx) {
+  try {
     if (tab) {
         if (ctx.element_.classList.contains(ctx.CssClasses_.MDL_JS_RIPPLE_EFFECT)) {
             var rippleContainer = document.createElement('span');
@@ -2711,10 +2712,13 @@ function MaterialTab(tab, ctx) {
             var panel = ctx.element_.querySelector('#' + href);
             ctx.resetTabState_();
             ctx.resetPanelState_();
-            tab.classList.add(ctx.CssClasses_.ACTIVE_CLASS);
-            panel.classList.add(ctx.CssClasses_.ACTIVE_CLASS);
+            //tab.classList.add(ctx.CssClasses_.ACTIVE_CLASS);
+            //panel.classList.add(ctx.CssClasses_.ACTIVE_CLASS);
         });
     }
+  } catch (e) {
+    console.error(e)
+  }
 }
 // The component registers itself. It can assume componentHandler is available
 // in the global scope.

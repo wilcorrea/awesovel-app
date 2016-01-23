@@ -24,6 +24,26 @@ window.App = {
     },
     /**
      *
+     * @param url
+     */
+    open: function(url) {
+      window.location.href = url;
+    },
+    /**
+     *
+     * @returns {string}
+     */
+    guid: function () {
+        function s4() {
+            return Math.floor((1 + Math.random()) * 0x10000)
+                .toString(16)
+                .substring(1);
+        }
+        return s4() + s4() + '-' + s4() + '-' + s4() + '-' +
+            s4() + '-' + s4() + s4() + s4();
+    },
+    /**
+     *
      * @type EditorVisual
      */
     editor: {
@@ -181,33 +201,6 @@ window.App = {
                     document.webkitExitFullscreen();
                 }
             }
-        }
-    },
-
-    /**
-     *
-     */
-    project: {
-
-        all: function () {
-            return JSON.parse(
-                App.fs.readFileSync(__dirname.replace('atom.asar/renderer/lib', '') + 'app/storage/projects.json', 'utf8')
-            );
-        },
-
-        find: function (id) {
-
-            var
-                projects = App.project.all(),
-                project = null;
-
-            angular.forEach(projects, function (_project) {
-                if (_project.id === id) {
-                    project = _project;
-                }
-            });
-
-            return project;
         }
     }
 

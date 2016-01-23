@@ -1,0 +1,164 @@
+
+<style>
+    .gennesis-sortable-line {
+        list-style-type: none;
+        background: #fff;
+        box-shadow: 1px 1px 4px 1px rgba(0, 0, 0, 0.1);
+        min-height: 90px;
+        clear: both;
+        overflow: auto;
+        white-space: nowrap;
+        background: #fff !important;
+        padding: 0;
+        margin: 0 -11px 0 0;
+    }
+
+    .gennesis-sortable-line li {
+        margin: 0;
+        /* font-size: 1.2em; */
+        width: 155px;
+        float: left;
+        cursor: move;
+        border-right: 1px dotted #ddd;
+        height: 90px;
+        background: #fff;
+        box-shadow: 1px 1px 2px 1px rgba(100, 100, 100, 0.15);
+    }
+
+    .gennesis-sortable-line li.gennesis-field-selected {
+        background: #f0f0f0;
+    }
+
+    .gennesis-sortable-line li .gennesis-sortable-inner {
+        padding: 5px 20px 5px 5px;
+    }
+
+    .control-label {
+        font-size: 12px;
+    }
+
+    .gennesis-rule-line div {
+        text-align: right;
+        border-right: 1px solid #ddd;
+        font-size: 9px;
+    }
+
+    .form-control {
+        font-size: 14px;
+        border-color: #ccc;
+        border-style: solid;
+        border-radius: 1px;
+        border-width: 1px;
+        box-shadow: none;
+        /*box-shadow: inset 1px 1px 2px 1px rgba(100,100,100, 0.15);*/
+    }
+
+    .form-control:focus {
+        border-color: #ddd;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, .3);
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 8px rgba(0, 0, 0, .3);
+    }
+
+    debug {
+        float: right;
+        margin: 3px 21px 0 0;
+        font-size: 10px;
+    }
+</style>
+
+<div class="mdl-tabs__panel is-active">
+
+    <div class="gennesis-rule-line">
+        <div class="col-xs-1 col-md-1 col-sm-1">1</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">2</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">3</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">4</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">5</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">6</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">7</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">8</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">9</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">10</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">11</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">12</div>
+    </div>
+
+    <ul class="gennesis-sortable-line" data-line="0">
+
+        <li data-column="6">
+            <debug class="index"></debug>
+            <debug class="column"></debug>
+            <debug class="line"></debug>
+            <div class="gennesis-sortable-inner">
+                <div class="form-group">
+                    <label class="control-label" data-container="body" data-toggle="popover" data-placement="top"
+                           data-content="Chave primária da entidade" data-original-title="" title="">
+                        Código
+                    </label>
+                    <input type="number" name="men_codigo" id="men_codigo" value="" class="form-control available int"
+                           data-action="" style="" onchange="" onkeyup="" onkeydown="" autocomplete="off"
+                           placeholder="Código">
+                </div>
+            </div>
+        </li>
+
+    </ul>
+
+    <div class="gennesis-rule-line">
+        <div class="col-xs-1 col-md-1 col-sm-1">1</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">2</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">3</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">4</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">5</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">6</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">7</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">8</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">9</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">10</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">11</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">12</div>
+    </div>
+
+    <ul class="gennesis-sortable-line" data-line="1">
+
+        <li data-column="6">
+            <debug class="index"></debug>
+            <debug class="column"></debug>
+            <debug class="line"></debug>
+            <div class="gennesis-sortable-inner">
+                <div class="form-group">
+                    <label class="control-label" data-container="body" data-toggle="popover" data-placement="top"
+                           data-content="Chave primária da entidade" data-original-title="" title="">
+                        Nome
+                    </label>
+                    <input type="text" name="men_descricao" id="men_descricao" value=""
+                           class="form-control available text" data-action="" style="" onchange="" onkeyup=""
+                           onkeydown="" autocomplete="off" placeholder="Nome">
+                </div>
+            </div>
+        </li>
+
+    </ul>
+
+    <div class="gennesis-rule-line">
+        <div class="col-xs-1 col-md-1 col-sm-1">1</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">2</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">3</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">4</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">5</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">6</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">7</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">8</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">9</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">10</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">11</div>
+        <div class="col-xs-1 col-md-1 col-sm-1">12</div>
+    </div>
+
+    <ul class="gennesis-sortable-line" data-line="2">
+    </ul>
+
+    <br style="clear:both">
+
+</div>

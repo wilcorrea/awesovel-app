@@ -1,0 +1,6 @@
+<div mdl-upgrade class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <input class="mdl-textfield__input" id="{{options.key}}" type="text" ng-readonly="to.readonly"
+           ng-disabled="to.disabled"
+           ng-model="model[options.key]"/>
+    <label class="mdl-textfield__label">{{to.label ? to.label : to.placeholder}}</label>
+</div>
