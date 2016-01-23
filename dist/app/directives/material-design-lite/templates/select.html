@@ -1,0 +1,16 @@
+<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-textfield--select"
+     ng-class="model[options.key].value ? 'is-dirty' : ''">
+    <input class="mdl-textfield__input" type="text" ng-model="model[options.key].label"/>
+    <input type="hidden" ng-model="model[options.key].value"/>
+    <label class="mdl-textfield__label">{{to.label ? to.label : to.placeholder}}</label>
+
+    <button id="{{options.id}}_button" class="mdl-button mdl-js-button mdl-button--icon">
+        <!--<i class="material-icons">more_vert</i>-->
+        <i class="material-icons">arrow_drop_down</i>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="{{options.id}}_button">
+        <li ng-repeat="_option in to.items" class="mdl-menu__item"
+            ng-click="model[options.key] = _option">{{ _option.label }}</li>
+    </ul>
+
+</div>

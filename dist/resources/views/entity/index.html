@@ -1,0 +1,46 @@
+<form class="col-sm-12 formly-card">
+
+    <div class="col-sm-8" style="padding: 0;">
+
+        <formly-form model="_tab.entity.scaffold" fields="vm.scaffold.fields"></formly-form>
+    </div>
+
+    <div class="col-sm-4" style="padding: 0; margin-left: -12px;">
+
+        <div style="margin: 0 0 26px 0;">{{ _tab.entity.languages[0].language }}</div>
+
+        <div class="col-sm-12" style="border-bottom: 1px dotted #ccc;">
+            <div mdl-upgrade class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input class="mdl-textfield__input" type="text" ng-model="_tab.entity.languages[0].default.label"/>
+                <label class="mdl-textfield__label">Label</label>
+            </div>
+        </div>
+
+        <div ng-repeat="item in _tab.entity.scaffold.items track by $index" style="margin-bottom: 0; border-top: 1px dotted #ccc;">
+
+            <div class="col-sm-6">
+                <div mdl-upgrade class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" ng-model="_tab.entity.languages[0].default.items[item.id].label"/>
+                    <label class="mdl-textfield__label">Label</label>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div mdl-upgrade class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <input class="mdl-textfield__input" type="text" ng-model="_tab.entity.languages[0].default.items[item.id].title"/>
+                    <label class="mdl-textfield__label">Title</label>
+                </div>
+            </div>
+            <br style="clear: both;">
+        </div>
+
+    </div>
+
+    <div class="col-sm-12" style="padding: 0">
+        <br>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                ng-click="vm.save('scaffold', _tab.entity)">
+            Save
+        </button>
+    </div>
+
+</form>

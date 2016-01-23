@@ -3,18 +3,35 @@ body {
     background-color: #f0f0f0;
 }
 
+.demo-layout-waterfall .mdl-layout__header-row .mdl-navigation__link:last-of-type {
+    padding-right: 0;
+}
+
+.progress-top-indicator {
+    width: 100%;
+    position: fixed;
+    z-index: 1000;
+}
+
+.progress-top-indicator-hidden {
+    display: none;
+}
+
 .formly-card {
-    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
-    padding: 20px 0 20px 25px;
+    box-shadow: 0 4px 5px 0 rgba(0, 0, 0, .14), 0 1px 10px 0 rgba(0, 0, 0, .12), 0 2px 4px -1px rgba(0, 0, 0, .2);
+    padding: 15px;
     background-color: #fff;
     border-radius: 2px;
 }
+
 .formly-card .mdl-textfield {
     width: 100%;
 }
+
 .formly-field.formly-field-group {
     width: 100%;
 }
+
 .formly-row {
     padding: 0;
     margin: 0 -15px;
