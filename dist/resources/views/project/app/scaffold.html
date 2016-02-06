@@ -1,0 +1,96 @@
+
+<div class="full-height">
+
+    <div ng-init="_tab.entity.scaffold.home = true"></div>
+
+    <ul class="nav nav-tabs" ng-init="_tab.entity.scaffold.tabs = []">
+        <li class="active home">
+            <a href="#" ng-click="_tab.entity.scaffold.home = !tabs.select(_tab.entity.scaffold.tabs, {})">
+                {{ lang.scaffold.home }}
+            </a>
+        </li>
+        <li ng-repeat="___tab in _tab.entity.scaffold.tabs track by $index" ng-class="___tab.selected ? 'active' : ''">
+            <a href="#" ng-click="_tab.entity.scaffold.home = tabs.select(_tab.entity.scaffold.tabs, ___tab)"  class="tabs---items">
+                {{ ___tab.id ? ___tab.id : '*_*' }}
+            </a>
+            <span class="tabs---items-closer" ng-click="_tab.entity.scaffold.home = tabs.remove(_tab.entity.scaffold.tabs, ___tab)">
+                &times;
+            </span>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div class="tab-pane active" ng-show="_tab.entity.scaffold.home">
+
+            <table class="mdl-data-table mdl-shadow--2dp" style="width: 100%;">
+                <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">{{ lang.scaffold.id }}</th>
+                    <th class="mdl-data-table__cell--non-numeric">{{ lang.scaffold.type }}</th>
+                    <th class="mdl-data-table__cell--non-numeric">{{ lang.scaffold.require }}</th>
+                    <th class="mdl-data-table__cell--non-numeric">{{ lang.scaffold.unique }}</th>
+                    <th class="mdl-data-table__cell--non-numeric">{{ lang.scaffold.behavior }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="___item in _tab.entity.scaffold.items" style="cursor: pointer; outline: none;"
+                    ng-click="_tab.entity.scaffold.home = tabs.add(_tab.entity.scaffold.tabs, ___item)">
+                    <td class="mdl-data-table__cell--non-numeric">{{ ___item.id }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ ___item.type }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ ___item.required }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ ___item.unique }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ ___item.behavior }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane" ng-repeat="___tab in _tab.entity.scaffold.tabs track by $index" ng-class="___tab.selected ? 'active' : ''">
+
+            <formly-form form="_tab.entity.scaffold.form[$index]" model="___tab" fields="vm.__forms.__attribute"></formly-form>
+
+            <button ng-disabled="_tab.entity.scaffold.form[$index].$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                {{ lang.scaffold.save }}
+            </button>
+
+            <pre class="debug">{{ ___tab | json}}</pre>
+
+            <br style="clear: both;">
+        </div>
+
+    </div>
+
+    <div class="tabs---items-popup ng-animated-light-spped"
+         ng-show="_tab.entity.scaffold.popup" ng-class="{active: _tab.entity.scaffold.popup}">
+
+        <span style="float: left;margin: 5px 0 0 20px;font-size: 20px; color: #37474F;">
+            <i class="material-icons" style="vertical-align: bottom;color: #37474F;">extension</i>
+            {{ lang.scaffold.newAttr }}
+        </span>
+
+        <span class="tabs---items-closer" ng-click="_tab.entity.scaffold.popup = false">
+            &times;
+        </span>
+
+        <div class="formly-card">
+
+            <formly-form form="_tab.entity.scaffold.fpopup" model="_tab.entity.scaffold.new" fields="vm.__forms.__attribute"></formly-form>
+
+            <button ng-disabled="_tab.entity.scaffold.fpopup.$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                {{ lang.scaffold.save }}
+            </button>
+
+            <br style="clear: both;">
+        </div>
+
+    </div>
+
+    <div class="circle">
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored  mdl-shadow--3dp"
+                ng-click="_tab.entity.scaffold.popup = !_tab.entity.scaffold.popup">
+            <i class="material-icons">add</i> <!--whatshot-->
+        </button>
+    </div>
+
+</div>

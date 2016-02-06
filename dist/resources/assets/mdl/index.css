@@ -1,8 +1,7 @@
 
 header.mdl-layout__header.is-casting-shadow {
-    height: 60px !important;
-    max-height: 60px !important;
-    overflow: hidden;
+    min-height: 0;
+    height: 35px;
 }
 .mdl-button {
     text-transform: none;
@@ -36,56 +35,66 @@ header.mdl-layout__header.is-casting-shadow {
 
 .mdl-card {
     min-height: 50px;
-    float: left;
-    margin: 0 15px 0 0;
+    width: 100%;
 }
 .mdl-tabs__tab {
     text-transform: none !important;
 }
 .mdl-tabs__panel {
   padding: 10px;
-  height: calc(100% - 115px);
   overflow: auto;
   position: absolute;
   width: 100%;
+  min-width: 770px;
 }
 .mdl-tabs__ripple-container.mdl-js-ripple-effect, .mdl-tabs__tab---close {
   cursor: pointer;
 }
 .mdl-tabs.is-upgraded .mdl-tabs__tab {  
-  /*box-shadow: inset 0 -8px 8px -10px rgba(0,0,0,.7);*/
-  padding: 5px 20px 0 10px;
+  /* box-shadow: inset 0 -8px 8px -10px rgba(0,0,0,.7); */
+  padding: 0 35px 0 30px;
   font-size: 13px;
+  height: 36px;
+  line-height: 44px;
 }
 .mdl-tabs.is-upgraded .mdl-tabs__tab.is-active {
+  color: #666;
+  background-color: #fff;
+  border-width: 0;
+  border-color: #607D8B;
+  border-style: solid;
+  /* box-shadow: inset 0px -2px 3px 1px rgba(100,100,100,.4); */
+}
+.mdl-tabs.is-upgraded .mdl-tabs__tab.is-active:hover {
   /* background-color: #F0F0F0; */
   /* box-shadow: 0px -4px 4px 1px rgba(0,0,0,.2); */
   /* border-width: 0 1px 0 1px; */
   /* border-style: solid; */
   /* border-color: #d0d0d0; */
+  color: #666 !important;
 }
 .mdl-tabs__tab---close {
     color: #aaa;
     position: absolute;
     z-index: 10000;
     top: 5px;
-    right: 0px;
+    right: 5px;
     font-size: 16px;
     text-shadow: 1px 1px 1px rgba(0,0,0,.1);
     height: 16px;
-    padding: 1px 0 0 0;
+    padding: 1px 0 0 1px;
     margin: 0;
     line-height: 1;
     outline: none;
     border-radius: 50%;
-    width: 16px;
+    width: 15px;
     text-align: center;
     vertical-align: middle;
 }
 .mdl-tabs__tab---close:hover {
-    text-shadow: 1px 1px 1px rgba(0,0,0,.5);
-    background-color: #F26569;
-    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    /*background-color: #F26569;*/
+    color: #F26569;
 }
 
 
@@ -131,31 +140,25 @@ header.mdl-layout__header.is-casting-shadow {
     padding: 0;
 }
 .md-tree-sidebar--close .md-tree-sidebar {
-  left: -280px;
+  left: -255px;
+  overflow: hidden;
 }
 .mdl-tree-sidebar-toggle {
   cursor: pointer;
   outline: none;
-  text-align: right;
-  /* background-color: rgb(255,82,82); */
-  padding: 10px 4px 0 0;
+  padding: 10px 5px 0 5px;
   margin: 0;
-  box-shadow: 0 0 3px 1px rgba(0,0,0,.5);
-  position: fixed;
-  width: 280px;
-  top: 60px;
-  z-index: 300000000;
-  transition: width .3s;
-  height: 30px;
+  height: 32px;
 }
 .md-tree-sidebar--close .mdl-tree-sidebar-toggle {
     position: fixed;
-    top: 60px;
+    top: 35px;
     left: 0;
     bottom: 0;
     border-radius: 0;
     width: 20px;
     height: 100%;
+    box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
 }
 .mdl-tree-sidebar-toggle .material-icons {
   font-size: 16px;
@@ -175,12 +178,12 @@ header.mdl-layout__header.is-casting-shadow {
 }
 
 .md-tree-sidebar--close .md-tree-content {
-    margin-left: 17px;
-    width: calc(100% - 16px);
+    margin-left: 30px;
+    width: calc(100% - 20px);
 }
 .md-tree-sidebar {
     position: fixed;
-    top: 90px;
+    top: 30px;
     bottom: 0;
     left: 0;
     z-index: 1000;
@@ -188,25 +191,17 @@ header.mdl-layout__header.is-casting-shadow {
     background-color: #fff;
     overflow-x: hidden;
     box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
-    width: 280px;
+    width: 270px;
     float: left;
-    overflow-y: scroll;
-    padding: 10px 0 0 10px;
+    overflow: hidden;
+    padding: 0 0 0 0;
     transition: left .5s;
 }
 
-.mdl-tree-ul--children .mdl-badge[data-badge]:after {
-  top: -5px;
-  right: -25px;
-  font-size: 9px;
-  width: 20px;
-  height: 20px;
-  background-color: #2F93BE;
-  font-family: monospace;
-}
+
 .md-tree-content {
     margin-left: 280px;
-    width: calc(100% - 280px);
+    width: calc(100% - 270px);
     /*border: 1px dotted #d0d0d0;*/
     overflow: hidden;
     padding: 0;
@@ -214,7 +209,7 @@ header.mdl-layout__header.is-casting-shadow {
     position: fixed;
     height: 100%;
     bottom: 0;
-    top: 65px;
+    top: 30px;
 }
 .md-tree-content .mdl-tabs__tab-bar {
     -webkit-justify-content: inherit;
@@ -223,17 +218,33 @@ header.mdl-layout__header.is-casting-shadow {
     background-color: #FDFDFD;
     /* box-shadow: inset 0 -3px 7px -3px rgba(0,0,0,0.5); */
     /* border-color: #f3f3f3; */
-    height: 48px;
+    height: 36px;
 }
 .mdl-tree-ul--root {
     list-style: none;
     padding: 0;
     margin: 0 0 5px 0;
     width: 100%;
-    /* border-width: 0 0 1px 0; */
-    /* border-style: dotted; */
-    /* border-color: #ccc; */
+    border-width: 0 2px 0 0;
+    border-style: solid;
+    border-color: #37474F;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    height: calc(100% - 32px);
+    box-shadow: inset 2px 2px 3px 1px rgba(0,0,0,.5);
 }
+.mdl-tree-ul--root::-webkit-scrollbar {
+    width: 5px;
+}
+.mdl-tree-ul--root::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.3); 
+    border-radius: 0;
+}
+.mdl-tree-ul--root::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background-color: rgba(189,189,189,.5)
+}
+
 .mdl-tree-ul--root .material-icons {
     vertical-align: top;
     color: #607D8B;
@@ -262,6 +273,37 @@ header.mdl-layout__header.is-casting-shadow {
 .mdl-tree-title {
     /* margin: 0 0 2px 0; */
     height: 25px;
+    padding: 0 0 0 23px;
+    background-size: 16px 16px;
+    background-repeat: no-repeat;
+    background-position: 4px 4px;
+    outline: none;
+    transition: all ease .3s;
+    border-radius: 2px 0 0 2px;
+}
+.mdl-tree-title:hover {
+  background-color: rgba(100,100,100,.21);
+  cursor: pointer;
+}
+.mdl-tree-title:hover a {
+    color: #303030 !important;
+}
+.mdl-tree-title label {
+    float: left;
+    width: calc(100% - 40px);  
+}
+
+.mdl-tree-title.mdl-tree-project {
+    background-image: url('../@/img/project.png');
+}
+.mdl-tree-title.mdl-tree-module {
+  background-image: url('../@/img/module.png');
+}
+.mdl-tree-title.mdl-tree-module.mdl-tree-module--open label {
+    font-weight: bold !important;
+}
+.mdl-tree-title.mdl-tree-entity {
+  background-image: url('../@/img/entity.png');
 }
 .mdl-tree-title label {
     font-size: 12px;
@@ -275,9 +317,18 @@ header.mdl-layout__header.is-casting-shadow {
     width: auto;
     overflow: hidden;
     transition: height .3s;
+    height: auto;
+    clear: both;
 }
 .mdl-tree-ul--children-close {
     height: 0px !important;
+}
+
+.form-dropdown--wraper .mdl-button.mdl-button--icon {
+  position: absolute;
+  top: 26px;
+  right: 15px;
+  height: 38px;
 }
 
 
@@ -349,12 +400,13 @@ header.mdl-layout__header.is-casting-shadow {
     font-weight: 300;
     position: absolute;
     background-color: #fff;
-    border-style: dotted;
+    border-style: solid;
     margin: -1px 0 0 0;
     border-width: 1px 1px 1px 0;
-    border-color: #ccc;
+    border-color: #E4E4E4;
     outline: none;
     border-radius: 0 2px 2px 0;
+    background-color: rgb(250, 250, 250);
 }
 
 .mdl-form-repeat--top {
@@ -364,22 +416,44 @@ header.mdl-layout__header.is-casting-shadow {
 }
 
 .mdl-form-repeat--item {
-  border-bottom: 1px dotted #ccc;
-  /* margin-top: -10px; */
+    margin: 0;
+    padding: 10px 0 0 0;
+    border-width: 1px 1px 0 1px;
+    border-style: solid;
+    border-color: #E4E4E4;
+    border-radius: 1px;
+    background-color: rgb(250, 250, 250);
 }
 
+.formly-field {
+  margin: 0;
+  padding: 0 10px;
+}
+
+.formly-field .radio, .formly-field .checkbox {
+  margin-left: 16px;
+}
+
+.formly-field .radio small, .formly-field .checkbox small {
+  font-size: 12px;
+}
+
+
 .mdl-form-repeat--container .mdl-form-repeat--item:last-child {
-  border-bottom: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #E4E4E4;
 }
 
 .mdl-form-repeat--container {
-    border: 1px dotted #ccc;
-  
-    padding: 10px 0 0 0;
-    border-radius: 2px;
+    padding: 0 0 0 0;
 }
 
 .mdl-form-repeat--norecords {
   font-size: 12px;
   padding: 0 10px 10px 10px;
+}
+
+.mdl-tabs__panel {
+  border-top: 2px solid #607D8B;
 }

@@ -1,0 +1,17 @@
+<!-- resources/views/project/properties.html -->
+<!-- ng-controller="ProjectPropertiesController" -->
+
+<div ng-controller="ProjectPropertiesController" class="col-sm-12 formly-card">
+
+    <formly-form form="vm.form" model="project" fields="vm.fields">
+
+        <!-- Action -->
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+                ng-click="vm.save($event)" ng-disabled="vm.form.$invalid">
+            Save
+        </button>
+    </formly-form>
+
+</div>
+
+{{ vm.project }}

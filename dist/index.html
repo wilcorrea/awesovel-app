@@ -4,12 +4,11 @@
 <head>
 
     <meta charset="utf-8">
-
-    <title>loading...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Bootstrap -->
-    <!--<link href="resources/assets/bootstrap/themes/paper/css/paper.min.css" rel="stylesheet">-->
-    <!--<link href="resources/assets/bootstrap/themes/paper/css/index.css" rel="stylesheet">-->
+    <link href="resources/assets/bootstrap/themes/paper/css/paper.min.css" rel="stylesheet">
+    <link href="resources/assets/bootstrap/themes/paper/css/index.css" rel="stylesheet">
     <link href="resources/assets/bootstrap/css/grid-12.css" rel="stylesheet">
 
     <!-- Material Design Lite Library -->
@@ -43,15 +42,17 @@
 
     <!-- This is the latest version of formly core. -->
     <script src="resources/assets/formly/formly.js"></script>
-    <!--<script src="resources/assets/formly/formly.bootstrap.js"></script>-->
+    <script src="resources/assets/formly/formly.bootstrap.js"></script>
     <!--<script src="resources/assets/formly/formly.angular-material.js"></script>-->
     <script src="resources/assets/formly/formly.material-design-lite.js"></script>
 
     <!-- Angular App -->
     <script src="app/App.js"></script>
     <script src="app/core/Angular.js"></script>
-    <script src="app/directives/FormlyDirective.js"></script>
-    <script src="app/directives/material-design-lite/MaterialDesignLiteController.js"></script>
+    <script src="app/directives/bootstrap/FormlyDirective.js"></script>
+    <script src="app/directives/bootstrap/BootstrapController.js"></script>
+    <!--<script src="app/directives/material-design-lite/FormlyDirective.js"></script>-->
+    <!--<script src="app/directives/material-design-lite/MaterialDesignLiteController.js"></script>-->
 
     <script src="app/controllers/AppController.js"></script>
     <script src="app/controllers/ProjectController.js"></script>
@@ -60,6 +61,7 @@
     <script src="app/services/ServiceFile.js"></script>
     <script src="app/services/ServiceDialog.js"></script>
     <script src="app/services/ServiceProvider.js"></script>
+    <script src="app/services/ServiceForm.js"></script>
 
     <script src="app/factory/EntityServiceProvider.js"></script>
     <script src="app/factory/ProjectServiceProvider.js"></script>
@@ -78,6 +80,8 @@
     <script type="text/javascript">
         angular.element(document.getElementsByTagName('head')).append(angular.element('<base href="' + window.location.pathname + '" />'));
     </script>
+
+    <title>Awesovel {{ project.name ? ' / ' + project.name : '' }}</title>
 </head>
 
 <body>
@@ -91,29 +95,33 @@
             <header class="mdl-layout__header">
                 <div class="mdl-layout__header-row">
                     <!-- Title -->
-                    <span class="mdl-layout-title"> <label class="font-play">{{ title ? title : '...' }}</label></span>
+                    <span class="mdl-layout-title"> <label class="font-play">Awesovel {{ project.name ? ' / ' + project.name : '' }}</label></span>
                     <!-- Add spacer, to align navigation to the right -->
-                    <div class="mdl-layout-spacer"></div>
+                    <!--<div class="mdl-layout-spacer"></div>-->
 
-                    <button id="current_upcoming" class="mdl-layout-title mdl-color-text--white mdl-button">
-                        <span class="material-icons" >account_box</span>
-                    </button>
-                    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu" for="current_upcoming">
-                        <li class="mdl-menu__item" onclick="App.screen.full.enter(document.documentElement);">Full Screen</li>
-                        <li class="mdl-menu__item" onclick="App.screen.full.exit();">Normal</li>
-                    </ul>
+                    <!--<button id="current_upcoming" class="mdl-layout-title mdl-color-text&#45;&#45;white mdl-button">-->
+                        <!--<span class="material-icons" >account_box</span>-->
+                    <!--</button>-->
+                    <!--<ul class="mdl-menu mdl-menu&#45;&#45;bottom-right mdl-js-menu" for="current_upcoming">-->
+                        <!--<li class="mdl-menu__item" onclick="App.screen.full.enter(document.documentElement);">Full Screen</li>-->
+                        <!--<li class="mdl-menu__item" onclick="App.screen.full.exit();">Normal</li>-->
+                    <!--</ul>-->
 
                     <!-- Navigation. We hide it in small screens. -->
-                    <nav class="mdl-navigation mdl-layout--large-screen-only">
-                        <a class="mdl-navigation__link" href="#{{ menu.href }}" ng-repeat="menu in menus">{{ menu.label }}</a>
-                    </nav>
+                    <!--<nav class="mdl-navigation mdl-layout&#45;&#45;large-screen-only">-->
+                        <!--<a class="mdl-navigation__link" href="#{{ menu.href }}" ng-repeat="menu in menus">{{ menu.label }}</a>-->
+                    <!--</nav>-->
+                </div>
+                <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+                    <a href="#scroll-tab-{{ $index }}" class="mdl-layout__tab" ng-repeat="_menu in menus track by $index"
+                       ng-class="_menu.active ? 'is-active' : ''" ng-click="app.activate(_menu)">{{ _menu.label }}</a>
                 </div>
             </header>
 
             <div class="board-drawer mdl-layout__drawer mdl-color-text--blue-grey-50">
                 <header class="board-drawer-header  mdl-color--blue-grey-800">
                     <div class="board-avatar-dropdown">
-                        <span class="mdl-layout-title">{{ drawer.label }}</span>
+                        <span class="mdl-layout-title">{{ project.name ? project.name : '<\/>' }}</span>
                         <div class="mdl-layout-spacer"></div>
                         <button id="accbtn" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                             <i class="material-icons">arrow_drop_down</i>
@@ -125,22 +133,45 @@
                     </div>
                 </header>
                 <nav class="board-navigation mdl-navigation">
-                    <a class="mdl-navigation__link" href="#{{ menu.href }}" ng-repeat="menu in menus"><i class="mdl-color-text--blue-grey-400 material-icons">{{ menu.icon }}</i><span>{{ menu.label }}</span></a>
+                    <a class="mdl-navigation__link"
+                       ng-repeat="menu in menus">
+                        <i class="mdl-color-text--blue-grey-400 material-icons">{{ menu.icon }}</i>
+                        <span>{{ menu.label }}</span></a>
                     <div class="mdl-layout-spacer"></div>
-                    <a class="mdl-navigation__link" href=""><i class="mdl-color-text--blue-grey-400 material-icons">help_outline</i></a>
+                    <a class="mdl-navigation__link" href="">
+                        <i class="mdl-color-text--blue-grey-400 material-icons">help_outline</i>
+                    </a>
                 </nav>
             </div>
 
             <main class="mdl-layout__content">
-                <div class="page-content">
 
-                    <!-- Your content goes here -->
+                <div class="view-animate-container">
 
-                    <div class="view-animate-container">
-                        <div ng-view class="view-animate"></div>
-                    </div>
+                    <section class="mdl-layout__tab-panel" id="scroll-tab-{{ $index }}"
+                             ng-repeat="_menu in menus track by $index"
+                             ng-class="_menu.active ? 'is-active' : ''">
+                        <div class="page-content" ng-include="_menu.template"></div>
+                    </section>
+
+                    <!--<section class="mdl-layout__tab-panel" id="scroll-tab-4">-->
+                        <!--<div class="page-content">&lt;!&ndash; Your content goes here &ndash;&gt;</div>-->
+                    <!--</section>-->
+                    <!--<section class="mdl-layout__tab-panel" id="scroll-tab-5">-->
+                        <!--<div class="page-content">&lt;!&ndash; Your content goes here &ndash;&gt;</div>-->
+                    <!--</section>-->
+                    <!--<section class="mdl-layout__tab-panel" id="scroll-tab-6">-->
+                        <!--<div class="page-content">&lt;!&ndash; Your content goes here &ndash;&gt;</div>-->
+                    <!--</section>-->
 
                 </div>
+
+                <!--<div class="page-content">-->
+                    <!-- Your content goes here -->
+                    <!--<div class="view-animate-container">-->
+                        <!--<div ng-view class="view-animate"></div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
             </main>
         </div>

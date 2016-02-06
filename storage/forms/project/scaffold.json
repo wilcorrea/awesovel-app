@@ -1,0 +1,215 @@
+[
+  {
+    "className": "formly-row col-sm-12",
+    "fieldGroup": [
+      {
+        "key": "items",
+        "type": "repeat",
+        "className": "col-sm-12",
+        "templateOptions": {
+          "label": "Fields",
+          "noRecords": "<i class=\"material-icons\">not_interested</i>",
+          "fields": [
+            {
+              "key": "id",
+              "type": "input-text",
+              "className": "col-sm-3",
+              "templateOptions": {
+                "labelTop": "Id"
+              }
+            },
+            {
+              "key": "type",
+              "type": "select",
+              "className": "col-sm-2",
+              "templateOptions": {
+                "labelTop": "Type",
+                "items": [
+                  {
+                    "label": "int",
+                    "value": "int"
+                  },
+                  {
+                    "label": "string",
+                    "value": "string"
+                  },
+                  {
+                    "label": "booelan",
+                    "value": "boolean"
+                  },
+                  {
+                    "label": "array",
+                    "value": "array"
+                  }
+                ]
+              }
+            },
+            {
+              "key": "behavior",
+              "type": "select",
+              "className": "col-sm-2",
+              "templateOptions": {
+                "labelTop": "Behavior",
+                "items": [
+                  {
+                    "value": "pk",
+                    "label": "pk"
+                  },
+                  {
+                    "value": "upper",
+                    "label": "upper"
+                  },
+                  {
+                    "value": "association",
+                    "label": "association"
+                  }
+                ]
+              }
+            },
+            {
+              "key": "unique",
+              "type": "checkbox",
+              "className": "col-sm-1",
+              "templateOptions": {
+                "labelTop": "Unique"
+              }
+            },
+            {
+              "key": "required",
+              "type": "checkbox",
+              "className": "col-sm-1",
+              "templateOptions": {
+                "labelTop": "Required"
+              }
+            },
+            {
+              "key": "dao",
+              "type": "checkbox-multiple",
+              "className": "col-sm-3",
+              "templateOptions": {
+                "labelTop": "Database",
+                "items": [
+                  {
+                    "index": "select",
+                    "label": "Sel"
+                  },
+                  {
+                    "index": "insert",
+                    "label": "Ins"
+                  },
+                  {
+                    "index": "update",
+                    "label": "Upd"
+                  }
+                ]
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "template": "<div class=\"formly-divider col-sm-12\"></div>"
+  },
+  {
+    "className": "formly-row col-sm-12",
+    "fieldGroup": [
+      {
+        "key": "relationships",
+        "type": "repeat",
+        "className": "col-sm-12",
+        "templateOptions": {
+          "label": "Relationships",
+          "noRecords": "<i class=\"material-icons\">not_interested</i>",
+          "fields": [
+            {
+              "key": "id",
+              "type": "input-text",
+              "className": "formly-column col-sm-6",
+              "templateOptions": {
+                "labelTop": "Id"
+              }
+            },
+            {
+              "key": "type",
+              "type": "input-text",
+              "className": "formly-column col-sm-6",
+              "templateOptions": {
+                "labelTop": "Type"
+              }
+            },
+            {
+              "key": "module",
+              "type": "input-text",
+              "className": "formly-column col-sm-3",
+              "templateOptions": {
+                "labelTop": "Module"
+              }
+            },
+            {
+              "key": "entity",
+              "type": "input-text",
+              "className": "formly-column col-sm-3",
+              "templateOptions": {
+                "labelTop": "Entity"
+              }
+            },
+            {
+              "key": "key",
+              "type": "input-text",
+              "className": "formly-column col-sm-3",
+              "templateOptions": {
+                "labelTop": "Key"
+              }
+            },
+            {
+              "key": "local",
+              "type": "select.project.items",
+              "className": "formly-column col-sm-3",
+              "templateOptions": {
+                "labelTop": "Local",
+                "items": []
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "template": "<div class=\"formly-divider col-sm-12\"></div>"
+  },
+  {
+    "className": "formly-row col-sm-12",
+    "fieldGroup": [
+      {
+        "key": "alias",
+        "type": "repeat",
+        "className": "col-sm-12",
+        "templateOptions": {
+          "label": "Aliases",
+          "noRecords": "<i class=\"material-icons\">not_interested</i>",
+          "fields": [
+            {
+              "key": "id",
+              "type": "input-text",
+              "className": "formly-column col-sm-6",
+              "templateOptions": {
+                "labelTop": "Alias"
+              }
+            },
+            {
+              "key": "operation",
+              "type": "input-text",
+              "className": "formly-column col-sm-6",
+              "templateOptions": {
+                "labelTop": "Operation"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]
