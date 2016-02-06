@@ -9,10 +9,6 @@
 window.App = {
 
     /**
-     * @type FileSystem
-     */
-    fs: require('fs'),
-    /**
      *
      * @param str
      * @returns {string|XML}

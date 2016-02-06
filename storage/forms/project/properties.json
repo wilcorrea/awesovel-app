@@ -1,0 +1,153 @@
+[
+  {
+    "className": "formly-row col-sm-12",
+    "fieldGroup": [
+      {
+        "key": "id",
+        "type": "input-text",
+        "className": "col-sm-4",
+        "templateOptions": {
+          "label": "Id",
+          "disabled": true,
+          "required": true
+        }
+      },
+      {
+        "key": "type",
+        "type": "dropdown",
+        "className": "col-sm-4",
+        "templateOptions": {
+          "label": "Type",
+          "required": true,
+          "items": [
+            {
+              "label": "phpee",
+              "value": "phpee"
+            },
+            {
+              "label": "php/laravel",
+              "value": "laravel"
+            },
+            {
+              "label": "ionic",
+              "value": "ionic"
+            }
+          ]
+        }
+      },
+      {
+        "key": "path",
+        "type": "input-folder",
+        "className": "col-sm-4",
+        "templateOptions": {
+          "label": "Path",
+          "required": true
+        }
+      }
+    ]
+  },
+  {
+    "className": "formly-row col-sm-12",
+    "fieldGroup": [
+      {
+        "key": "name",
+        "type": "input-text",
+        "className": "col-sm-4",
+        "templateOptions": {
+          "label": "Name",
+          "required": true
+        }
+      },
+      {
+        "key": "keyPrimary",
+        "type": "input-text",
+        "className": "col-sm-4",
+        "templateOptions": {
+          "label": "Primary",
+          "required": true
+        }
+      }
+    ]
+  },
+  {
+    "className": "formly-row col-sm-12",
+    "fieldGroup": [
+      {
+        "key": "keyCreation",
+        "type": "input-text",
+        "className": "col-sm-3",
+        "templateOptions": {
+          "label": "Creation",
+          "required": true
+        }
+      },
+      {
+        "key": "keyCreator",
+        "type": "input-text",
+        "className": "col-sm-3",
+        "templateOptions": {
+          "label": "Creator",
+          "required": true
+        }
+      },
+      {
+        "key": "keyChange",
+        "type": "input-text",
+        "className": "col-sm-3",
+        "templateOptions": {
+          "label": "Last Change",
+          "required": true
+        }
+      },
+      {
+        "key": "keyChanger",
+        "type": "input-text",
+        "className": "col-sm-3",
+        "templateOptions": {
+          "label": "Last Changer",
+          "required": true
+        }
+      }
+    ]
+  },
+  {
+    "className": "formly-row col-sm-12",
+    "fieldGroup": [
+      {
+        "key": "description",
+        "type": "textarea",
+        "className": "col-sm-12",
+        "templateOptions": {
+          "label": "Description",
+          "required": true
+        }
+      }
+    ]
+  },
+  {
+    "className": "formly-row col-sm-12",
+    "fieldGroup": [
+      {
+        "key": "expensive",
+        "type": "input-file",
+        "className": "col-sm-12",
+        "templateOptions": {
+          "label": "Is it expensive?"
+        }
+      }
+    ]
+  },
+  {
+    "className": "formly-row col-sm-12",
+    "fieldGroup": [
+      {
+        "key": "autocomplete",
+        "type": "autocomplete",
+        "className": "col-sm-12",
+        "templateOptions": {
+          "label": "States"
+        }
+      }
+    ]
+  }
+]

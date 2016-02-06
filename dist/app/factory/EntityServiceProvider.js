@@ -44,11 +44,11 @@ App.angular
 
                     var e = {
                         name: file.split('.')[0],
-                        url: 'resources/views/entity/index.html',
                         file: file,
                         path: path,
                         module: module
                     };
+                    e.form = {};
                     if (complete) {
                         e = EntityServiceProvider.entity(type, entity);
                     }
@@ -58,32 +58,31 @@ App.angular
                 return entities;
             },
             /**
-             *
-             * @param type
-             * @param entity
+             * 
+             * @var Scaffold
              */
-            entity: function (type, entity) {
+            scaffold: {
+              /**
+               *
+               * @param path
+               * @param module
+               * @param name
+               * @param type
+               *
+               * @return {Object}
+               */
+              get: function (path, module, name, type) {
 
-                var
-                    scaffold = [],
-                    forms = [],
-                    languages = [],
-                    operations = [];
+                var _get = {};
 
                 switch (type) {
 
                     case 'laravel':
 
-                        var filename = ServiceFile.path.join(entity.path, entity.module, 'Scaffold', entity.name, entity.name + '.gen');
+                        var filename = ServiceFile.path.join(path, module, 'Scaffold', name, name + '.gen');
                         if (ServiceFile.exists(filename)) {
-                            scaffold = EntityServiceProvider.scaffold(type, filename);
+                            _get = JSON.parse(ServiceFile.read(filename));
                         }
-
-                        forms = EntityServiceProvider.load(entity.path, entity.module, entity.name, 'Scaffold', 'Form');
-
-                        languages = EntityServiceProvider.load(entity.path, entity.module, entity.name, 'Scaffold', 'Language');
-
-                        operations = EntityServiceProvider.load(entity.path, entity.module, entity.name, 'Scaffold', 'Operation');
 
                         break;
                     case 'ionic':
@@ -94,24 +93,129 @@ App.angular
                         break;
                 }
 
-                entity.scaffold = scaffold;
+                return _get;
+              },
+              /**
+               *
+               * @param path
+               * @param module
+               * @param name
+               * @param type
+               * @param scaffold
+               * @param callback
+               *
+               * @return {Object}
+               */
+              set: function (path, module, name, type, scaffold, callback) {
 
-                entity.forms = forms;
-                entity.languages = languages;
-                entity.operations = operations;
+                var _set = false;
 
-                return entity;
+                switch (type) {
+
+                    case 'laravel':
+
+                        var 
+                            filename = ServiceFile.path.join(path, module, 'Scaffold', name, name + '.gen')
+                            , content = JSON.stringify(scaffold, function(key, value) {
+                              if (key === "$$hashKey") {
+                                  return undefined;
+                              }
+                              return value;
+                            });
+
+                        _set = ServiceFile.write(filename, content, callback);
+
+                        break;
+                    case 'ionic':
+
+                        break;
+                    case 'phpee':
+
+                        break;
+                }
+
+                return _set;
+              }
             },
             /**
              *
-             * @param type
-             * @param filename
-             *
-             * @return {Object}
+             * @var Scaffold
              */
-            scaffold: function (type, filename) {
+            language: {
+                /**
+                 *
+                 * @param path
+                 * @param module
+                 * @param name
+                 * @param type
+                 *
+                 * @return {Object}
+                 */
+                get: function (path, module, name, type) {
 
-                return JSON.parse(ServiceFile.read(filename));
+                    var _get = {};
+
+                    switch (type) {
+
+                        case 'laravel':
+
+                            var filename = ServiceFile.path.join(path, module, 'Scaffold', name, 'Language', 'pt-BR.lng');
+                            if (ServiceFile.exists(filename)) {
+                                _get = JSON.parse(ServiceFile.read(filename));
+                            }
+
+                            break;
+                        case 'ionic':
+
+                            break;
+                        case 'phpee':
+
+                            break;
+                    }
+
+                    return _get;
+                },
+                /**
+                 *
+                 * @param path
+                 * @param module
+                 * @param name
+                 * @param type
+                 * @param scaffold
+                 * @param callback
+                 *
+                 * @return {Object}
+                 */
+                set: function (path, module, name, type, scaffold, callback) {
+
+                    var _set = false;
+
+                    switch (type) {
+
+                        case 'laravel':
+
+                            var
+                                filename = ServiceFile.path.join(path, module, 'Scaffold', name, name + '.gen')
+                                , content = JSON.stringify(scaffold, function(key, value) {
+                                    if (key === "$$hashKey") {
+                                        return undefined;
+                                    }
+                                    return value;
+                                });
+
+                            _set = ServiceFile.write(filename, content, callback);
+
+                            break;
+                        case 'ionic':
+
+                            break;
+                        case 'phpee':
+
+                            break;
+                    }
+
+                    return _set;
+                }
             },
             /**
              *

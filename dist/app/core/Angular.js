@@ -6,9 +6,11 @@
 
 'use strict';
 
-App.angular = angular.module('app', ['ngRoute', 'ngAnimate', 'ngMaterial', 'formly', 'mdl'/*, 'formlyMaterial'*//*, 'formlyBootstrap'*/]);
+App.angular =
+    angular.module('app', ['ngRoute', 'ngAnimate', 'ngMaterial', 'formly'
+        /*, 'mdl'*//*, 'formlyMaterial'*//*, 'formlyBootstrap'*/]);
 
-
+/*
 App.angular
 
     .config(['$routeProvider', '$locationProvider',
@@ -91,4 +93,5 @@ App.angular
         }
 
         $scope.template = template;
-    }])
+    }]);
+ */

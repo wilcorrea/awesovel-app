@@ -48,13 +48,19 @@ App.angular
              *
              * @param filename
              * @param content
+             * @param callback
+             * 
              * @returns {string}
              */
-            write: function (filename, content) {
-                if (ServiceFile.exists(filename)) {
-                    return ServiceFile.fs.writeFileSync(filename, content);
-                }
-                return null;
+            write: function (filename, content, callback) {
+                
+                return ServiceFile.fs.writeFile(filename, content, 'utf8', function (err) {
+                  try {
+                    callback.call(this, err);
+                  } catch(e) {
+                    
+                  }
+                });
             },
             /**
              *

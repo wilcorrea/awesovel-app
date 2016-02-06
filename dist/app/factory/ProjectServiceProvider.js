@@ -49,12 +49,46 @@ App.angular
             },
             /**
              *
+             * @param tabs
+             * @param type
              * @param entity
              */
             open: function (tabs, type, entity) {
 
+                var _entity = null;
+
+                angular.forEach(tabs, function (_tab, i) {
+
+                    if (_tab.entity.module === entity.module && _tab.entity.name === entity.name) {
+                        _entity = _tab.entity;
+                    }
+                });
+
+                if (!_entity) {
+
+                    _entity = entity;
+
+
+                    _entity.scaffold = EntityServiceProvider.scaffold.get(_entity.path, _entity.module, _entity.name, type);
+
+                    var
+                        items = [];
+
+                    for (var i in _entity.scaffold.items) {
+
+                        var item = angular.copy(_entity.scaffold.items[i]);
+
+                        items.push(item);
+                    }
+
+                    _entity.language = EntityServiceProvider.language.get(_entity.path, _entity.module, _entity.name, type);
+
+
+                    _entity.scaffold.items = items;
+                }
+
                 var tab = {
-                    "entity": EntityServiceProvider.entity(type, entity),
+                    "entity": _entity,
                     "selected": true
                 };
                 ProjectServiceProvider.select(tabs, tab);
@@ -97,9 +131,20 @@ App.angular
              * @param module
              * @returns {Array}
              */
-            entities: function (project, module) {
+            getEntities: function (project, module) {
 
                 return EntityServiceProvider.parse(project.type, project.path, module);
+            },
+            /**
+             *
+             * @param project
+             * @param entity
+             * @returns {Boolean}
+             */
+            setEntity: function (project, entity) {
+
+                console.log(entity);
+                //return EntityServiceProvider.parse(project.type, project.path, module);
             }
         };
 

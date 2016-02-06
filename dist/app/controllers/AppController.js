@@ -6,136 +6,144 @@
 
 App.angular
 
-    .controller('AppController', function ($scope, $route, $routeParams, $location, $mdDialog, $mdMedia) {
-
-        $scope.$route = $route;
-        $scope.$location = $location;
-        $scope.$routeParams = $routeParams;
-
-        $scope.app = {
-            "title": 'Awesovel',
-            "drawer": 'Open a Project'
-        };
+    .controller('AppController', ['$scope', '$timeout', 'ServiceDialog', function ($scope, $timeout, ServiceDialog) {
 
         $scope.drawer = {
-            width: 300,
-            label: '...'
-        }
+            width: 300
+        };
         $scope.loaded = true;
 
-        /**
-         *
-         * @param title
-         */
-        $scope.setTitlePage = function(title) {
-
-            window.document.title = $scope.app.title + (title ? ' / ' + title : '');
-            $scope.title = $scope.app.title + (title ? ' / ' + title : '');
-        };
-        /**
-         *
-         * @param title
-         */
-        $scope.setTitleDrawer = function(label) {
-
-            $scope.drawer.label = label;
-        };
-
-        /**
-         *
-         */
-        $scope.setTitlePage($scope.app.drawer);
-        /**
-         *
-         */
-        $scope.setTitleDrawer();
 
         $scope.menus = [];
 
         $scope.project = null;
 
-        $scope.close = function () {
-
-            $scope.project = null;
-            $scope.setTitleDrawer($scope.app.drawer);
-            $scope.setTitlePage();
-
-            $scope.menus = [
-                {
-                    label: 'Home',
-                    href: 'home',
-                    icon: 'web'
-                }
-            ];
-        };
-
-        $scope.open = function (id, title) {
-
-            $scope.menus = [];
-
-            $scope.project = id;
-            $scope.setTitleDrawer(title);
-            $scope.setTitlePage(title);
-
-            $scope.menus = [
-                {
-                    label: 'Home',
-                    href: 'home',
-                    icon: 'web'
-                }
-                ,
-                {
-                    label: 'Models',
-                    href: 'app/project/model/' + id,
-                    icon: 'web'
-                },
-                {
-                    label: 'Databases',
-                    href: 'app/project/database/' + id,
-                    icon: 'web'
-                },
-                {
-                    label: 'Settings',
-                    href: 'app/project/manager/' + id,
-                    icon: 'web'
-                }
-            ];
-        };
-
-        $scope.close();
-
-
-        $scope.dialog = {
-
+        $scope.app = {
             /**
              *
-             * @param title
-             * @param message
-             * @param success
-             * @param cancel
              */
-            confirm: function(title, message, success, cancel) {
+            close: function () {
 
-                var confirm = $mdDialog.confirm()
-                    .title(title)
-                    .textContent(message)
-                    //.ariaLabel('Lucky day')
-                    //.targetEvent(ev)
-                    .ok('Confirm')
-                    .cancel('Cancel');
+                $scope.project = null;
 
-                $mdDialog.show(confirm).then(function() {
-
-                    if (angular.isFunction(success)) {
-                        success.call();
+                $scope.menus = [
+                    {
+                        label: 'Home',
+                        template: 'resources/views/home.html',
+                        icon: 'web',
+                        active: true
                     }
+                ];
+            },
+            /**
+             *
+             * @param project
+             * @param first
+             */
+            open: function (project, first) {
 
-                }, function() {
-                    if (angular.isFunction(cancel)) {
-                        cancel.call();
+                var __open = function (project) {
+
+                    $scope.project = project;
+
+                    var menus = [
+                        {
+                            label: 'Home',
+                            template: 'resources/views/home.html',
+                            icon: 'web',
+                            active: false
+                        },
+                        {
+                            label: 'App',
+                            template: 'resources/views/project/app.html',
+                            icon: 'web',
+                            active: !first
+                        },
+                        {
+                            label: 'Web',
+                            template: 'resources/views/project/web.html',
+                            icon: 'web',
+                            active: false
+                        },
+                        {
+                            label: 'Projeto',
+                            template: 'resources/views/project/properties.html',
+                            icon: 'web',
+                            active: first
+                        }
+                    ];
+
+                    $scope.menus = [];
+
+                    $timeout(function () {
+                        menus.forEach(function (menu) {
+                            $scope.menus.push(menu);
+                        });
+                    }, 400);
+                };
+
+
+                if ($scope.project === null) {
+
+                    __open(project);
+
+                } else if ($scope.project.id !== project.id) {
+
+                    if ($scope.project) {
+                        ServiceDialog.confirm('Project', 'There is a Project open! Do you want close it?', function () {
+
+                            __open(project);
+                        });
                     }
+                } else {
+                    $scope.menus.forEach(function (menu, i) {
+                        $scope.menus[i].active = false;
+                        if (menu.label === 'Models') {
+                            $scope.menus[i].active = true;
+                        }
+                    });
+                }
+            },
+            /**
+             *
+             * @param $event
+             */
+            new: function($event) {
+
+                var $continue = function () {
+                    $scope.app.open({
+                        name: 'New Project'
+                    }, true);
+                };
+
+                if ($scope.project) {
+
+                    ServiceDialog.confirm('Project', 'To do it we needd close the current project. Can we continue?', function () {
+
+                        $scope.app.close();
+                        $continue();
+
+                    }, $event);
+                } else {
+
+                    $continue();
+                }
+            },
+            /**
+             *
+             * @param menu
+             */
+            activate: function (menu) {
+
+                $scope.menus.forEach(function (_menu, i) {
+                    _menu.active = false;
+                    if (menu === _menu) {
+                        _menu.active = true;
+                    }
+                    $scope.menus[i] = _menu;
                 });
             }
-        }
+        };
 
-    });
+        $scope.app.close();
+    }]);

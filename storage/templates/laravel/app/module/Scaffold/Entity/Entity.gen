@@ -1,0 +1,28 @@
+{
+  "properties": {
+    "table": "{{table}}",
+    "primaryKey": "{{primaryKey}}",
+    "prefix": "{{prefix}}",
+    "alias": [
+      {
+        "id": "list",
+        "operation": "index"
+      }
+    ]
+  },
+  "items": {
+    "{{primaryKey}}": {
+      "id": "{{primaryKey}}",
+      "type": "int",
+      "component": "input-text",
+      "behavior": "pk",
+      "dao": {
+        "select": true,
+        "update": false,
+        "insert": false
+      },
+      "required": false,
+      "unique": true
+    }
+  }
+}

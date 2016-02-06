@@ -1,0 +1,101 @@
+[
+  {
+    "key": "id",
+    "type": "input-text",
+    "className": "col-sm-12",
+    "templateOptions": {
+      "label": "Nome do Campo [usado como atributo da classe e coluna do banco de dados (quando aplicado)]",
+      "required": true
+    }
+  },
+  {
+    "key": "type",
+    "type": "select",
+    "className": "col-sm-12",
+    "templateOptions": {
+      "label": "Tipo [tipo usado para processar e armazenar os valores]",
+      "required": true,
+      "items": [
+        {
+          "label": "int",
+          "value": "int"
+        },
+        {
+          "label": "string",
+          "value": "string"
+        },
+        {
+          "label": "booelan",
+          "value": "boolean"
+        },
+        {
+          "label": "array",
+          "value": "array"
+        }
+      ]
+    }
+  },
+  {
+    "key": "behavior",
+    "type": "select",
+    "className": "col-sm-12",
+    "templateOptions": {
+      "label": "Comportamento [recurso extra baseado no tipo]",
+      "required": true,
+      "items": [
+        {
+          "value": "pk",
+          "label": "pk"
+        },
+        {
+          "value": "upper",
+          "label": "upper"
+        },
+        {
+          "value": "association",
+          "label": "association"
+        }
+      ]
+    }
+  },
+  {
+    "key": "unique",
+    "type": "checkbox",
+    "className": "col-sm-6",
+    "templateOptions": {
+      "label": "Único",
+      "placeholder": "Define se o campo é Único"
+    }
+  },
+  {
+    "key": "required",
+    "type": "checkbox",
+    "className": "col-sm-6",
+    "templateOptions": {
+      "label": "Obrigatório",
+      "placeholder": "Define se o campo é Obrigatório"
+    }
+  },
+  {
+    "key": "dao",
+    "type": "checkbox-multiple",
+    "className": "col-sm-12",
+    "templateOptions": {
+      "label": "Banco de Dados",
+      "items": [
+        {
+          "index": "select",
+          "label": "SELECT"
+        },
+        {
+          "index": "insert",
+          "label": "INSERT"
+        },
+        {
+          "index": "update",
+          "label": "UPDATE"
+        }
+      ]
+    }
+  }
+]

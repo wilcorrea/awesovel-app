@@ -1,0 +1,89 @@
+
+<div class="full-height">
+
+    <div ng-init="_tab.entity.language.home = true"></div>
+
+    <ul class="nav nav-tabs" ng-init="_tab.entity.language.tabs = []">
+        <li class="active home">
+            <a href="#" ng-click="_tab.entity.language.home = !tabs.select(_tab.entity.language.tabs, {})">
+                pt-BR
+            </a>
+        </li>
+        <li ng-repeat="___tab in _tab.entity.language.tabs track by $index" ng-class="___tab.selected ? 'active' : ''">
+            <a href="#" ng-click="_tab.entity.language.home = tabs.select(_tab.entity.language.tabs, ___tab)"  class="tabs---items">
+                {{ ___tab.id ? ___tab.id : '*_*' }}
+            </a>
+            <span class="tabs---items-closer" ng-click="_tab.entity.language.home = tabs.remove(_tab.entity.language.tabs, ___tab)">
+                &times;
+            </span>
+        </li>
+    </ul>
+
+    <div class="tab-content">
+
+        <div class="tab-pane active" ng-show="_tab.entity.language.home">
+
+            <table class="mdl-data-table mdl-shadow--2dp" style="width: 100%;">
+                <thead>
+                <tr>
+                    <th class="mdl-data-table__cell--non-numeric">Formul&aacute;rio</th>
+                    <th class="mdl-data-table__cell--non-numeric">Nome</th>
+                    <th class="mdl-data-table__cell--non-numeric">Atributos</th>
+                    <th class="mdl-data-table__cell--non-numeric">A&ccedil;&otilde;es</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="(key,___item) in _tab.entity.language.forms" style="cursor: pointer; outline: none;" ng-click="_tab.entity.language.home = tabs.add(_tab.entity.language.tabs, copy(___item))">
+                    <td class="mdl-data-table__cell--non-numeric">{{ ___item.id }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ ___item.name }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ ___item.items ? 'true' : 'false' }}</td>
+                    <td class="mdl-data-table__cell--non-numeric">{{ ___item.actions ? 'true' : 'false' }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="tab-pane" ng-repeat="___tab in _tab.entity.language.tabs track by $index" ng-class="___tab.selected ? 'active' : ''">
+
+            <formly-form form="_tab.entity.language.form[$index]" model="___tab" fields="vm.__forms.__attribute"></formly-form>
+
+            <button ng-disabled="_tab.entity.language.form[$index].$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                Salvar
+            </button>
+
+            <pre class="debug">{{ ___tab | json}}</pre>
+
+            <br style="clear: both;">
+        </div>
+
+    </div>
+
+    <div class="tabs---items-popup" ng-show="_tab.entity.language.popup">
+
+        <span style="float: left;margin: 5px 0 0 20px;font-size: 20px; color: #183A4A;"><i class="material-icons" style="vertical-align: bottom;color: #FF5252;">extension</i> Novo Atributo</span>
+
+        <span class="tabs---items-closer" ng-click="_tab.entity.language.popup = false">
+            &times;
+        </span>
+
+        <div class="formly-card">
+
+            <formly-form form="_tab.entity.language.fpopup" model="_tab.entity.language.new" fields="vm.__forms.__attribute"></formly-form>
+
+            <button ng-disabled="_tab.entity.language.fpopup.$invalid" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
+                Salvar
+            </button>
+
+            <br style="clear: both;">
+        </div>
+
+    </div>
+
+    <div class="circle">
+        <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored  mdl-shadow--3dp"
+                ng-click="_tab.entity.language.popup = !_tab.entity.language.popup">
+            <i class="material-icons">add</i> <!--whatshot-->
+        </button>
+    </div>
+
+</div>

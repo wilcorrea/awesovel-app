@@ -20,7 +20,7 @@ App.angular
              */
             confirm: function(title, message, success, cancel) {
 
-                var confirm = $mdDialog.confirm()
+                var _confirm = $mdDialog.confirm()
                     .title(title)
                     .textContent(message)
                     //.ariaLabel('Lucky day')
@@ -28,7 +28,7 @@ App.angular
                     .ok('Confirm')
                     .cancel('Cancel');
 
-                $mdDialog.show(confirm).then(function() {
+                $mdDialog.show(_confirm).then(function() {
 
                     if (angular.isFunction(success)) {
                         success.call();
@@ -39,6 +39,23 @@ App.angular
                         cancel.call();
                     }
                 });
+            },
+
+            /**
+             *
+             * @param title
+             * @param message
+             * @param success
+             * @param cancel
+             */
+            alert: function(title, message) {
+
+                var _alert = $mdDialog.confirm()
+                    .title(title)
+                    .textContent(message)
+                    .ok('Close');
+                    
+                $mdDialog.show(_alert);
             }
         };
 

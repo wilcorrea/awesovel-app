@@ -1,0 +1,54 @@
+[
+  {
+    "className": "formly-row col-sm-12",
+    "fieldGroup": [
+      {
+        "key": "label",
+        "type": "input-text",
+        "className": "formly-column col-sm-12",
+        "templateOptions": {
+          "label": "Label"
+        }
+      }
+    ]
+  },
+  {
+    "className": "formly-row col-sm-12",
+    "fieldGroup": [
+      {
+        "key": "items",
+        "type": "repeat",
+        "className": "col-sm-12",
+        "templateOptions": {
+          "label": "Fields",
+          "fields": [
+            {
+              "key": "id",
+              "type": "input-text",
+              "className": "col-sm-4",
+              "templateOptions": {
+                "label": "Id"
+              }
+            },
+            {
+              "key": "label",
+              "type": "input-text",
+              "className": "col-sm-4",
+              "templateOptions": {
+                "label": "Type"
+              }
+            },
+            {
+              "key": "title",
+              "type": "input-text",
+              "className": "col-sm-4",
+              "templateOptions": {
+                "label": "Title"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+]

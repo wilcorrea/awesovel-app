@@ -1,0 +1,193 @@
+<!-- resources/views/project/model.html -->
+<!-- ng-controller="ProjectModelController" -->
+
+<div ng-controller="ProjectAppController" class="container-fluid mdl-tree-container"
+     ng-class="vm.sidebar.open ? '' : vm.sidebar.className">
+
+    <div class="col-sm-2 md-tree-sidebar">
+
+        <div class="mdl-tree-sidebar-toggle mdl-color--blue-grey-800" ng-click="vm.sidebar.open = !vm.sidebar.open">
+            <i class="material-icons mdl-tree-sidebar-toggle--closer">navigate_before</i>
+            <i class="material-icons mdl-tree-sidebar-toggle--opener">navigate_next</i>
+        </div>
+
+        <ul class="mdl-tree-ul--root">
+            <li>
+                <div class="mdl-tree-title mdl-tree-project">
+                    <label>/ {{ project.name }}</label>
+                </div>
+                <ul class="mdl-tree-ul--children">
+                    <li ng-repeat="module in vm.modules">
+                        <div class="mdl-tree-title mdl-tree-module"
+                             ng-class="module.open ? 'mdl-tree-module--open' : ''">
+                            <label ng-click="module.open = !module.open"> {{ module.name }} </label>
+                            <span class="mdl-tree-badge" ng-click="vm.add(module)">{{ module.entities.length }}</span>
+                        </div>
+                        <ul class="mdl-tree-ul--children" ng-class="module.open ? '' : 'mdl-tree-ul--children-close'"
+                            style="{{ 'height' + (module.entities.length * 26) + 'px;' }}">
+                            <li ng-repeat="entity in module.entities">
+                                <div class="mdl-tree-title mdl-tree-entity">
+                                    <a href="javascript:void(0);"
+                                       ng-click="vm.service.open(vm.tabs, project.type, entity, vm.scaffold)">
+                                        {{ entity.name }}</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+    <div class="col-sm-10 md-tree-content">
+
+        <div ng-show="!vm.tabs.length" class="demo-card-wide mdl-card mdl-shadow--2dp"
+             style="margin: 20px; width: calc(100% - 40px); height: calc(100% - 70px);" aria-hidden="false">
+            <img src="resources/assets/@/img/w.e.b.png" width="500px" style="display: block;margin: 0 auto;">
+
+            <img src="resources/assets/light-hilt/light_hilt_ldpi_v1.png"
+                 style="width: 100px;position: absolute; z-index: 20; top: 278px; box-shadow: 5px 0 3px -4px #000;">
+
+            <div class="lpb">
+                <div id="lpt"></div>
+            </div>
+
+            <style>
+                .lpb {
+                    width: 315px;
+                    padding: 0;
+                    height: 6px;
+                    margin: -14px 0 0 99px;
+                    border-radius: 0 3px 4px 0;
+                    background-color: #F7BFC5;
+                    box-shadow: inset 0 0 4px 1px #FF4D68, 1px 0 5px 2px #C7374E;
+                }
+
+                #lpt {
+                    height: 100%;
+                    background-color: #F9FFFF;
+                    background-repeat: repeat-x;
+                    background-position: 0 0;
+                    background-size: 16px 8px;
+                    box-shadow: inset 0 0 2px 1px #96C8ED, 1px 0 10px 2px #ABD0FA;
+                    border-radius: 0 5px 5px 0;
+                }
+            </style>
+
+        </div>
+
+        <div id="tabs-model" class="mdl-tabs mdl-js-tabs mdl-js-ripple-effect" ng-show="vm.tabs.length">
+
+            <div class="mdl-tabs__tab-bar">
+
+                <a ng-repeat="_tab in vm.tabs track by $index" class="mdl-tabs__tab"
+                   ng-class="_tab.selected ? 'is-active' : ''" ng-click="vm.service.select(vm.tabs, _tab)">
+                    {{ _tab.entity.name }} <span ng-click="vm.service.close(vm.tabs, _tab)"
+                                                 class="mdl-tabs__tab---close">&times;</span>
+                </a>
+            </div>
+
+            <div ng-repeat="_tab in vm.tabs track by $index" class="mdl-tabs__panel" ng-init="_tab._i= 0"
+                 ng-class="_tab.selected ? 'is-active' : ''">
+
+                <ul class="nav nav-tabs">
+                    <li ng-class="_tab._i === 0 ? 'active' : ''" ng-click="_tab._i = 0">
+                        <a href="#scaffold" aria-expanded="true">Esqueleto</a>
+                    </li>
+                    <li ng-class="_tab._i === 1 ? 'active' : ''" ng-click="_tab._i = 1">
+                        <a href="#language" aria-expanded="false">Idiomas</a>
+                    </li>
+                    <li ng-class="_tab._i === 2 ? 'active' : ''" ng-click="_tab._i = 2">
+                        <a href="#language" aria-expanded="false">Formul&aacute;rios</a>
+                    </li>
+                    <li ng-class="_tab._i === 3 ? 'active' : ''" ng-click="_tab._i = 3">
+                        <a href="#language" aria-expanded="false">Opera&ccedil;&otilde;es</a>
+                    </li>
+                    <li ng-class="_tab._i === 4 ? 'active' : ''" ng-click="_tab._i = 4">
+                        <a href="#language" aria-expanded="false">Banco de Dados</a>
+                    </li>
+                    <li ng-class="_tab._i === 5 ? 'active' : ''" ng-click="_tab._i = 5">
+                        <a href="#language" aria-expanded="false">Refatora&ccedil;&atilde;o</a>
+                    </li>
+                </ul>
+
+                <div class="app-tab full-height">
+
+                    <div class="col-sm-12 formly-card nav-tabs-panel" ng-show="_tab._i === 0">
+
+                        <div ng-include="'resources/views/project/app/scaffold.html'" style="height: calc(100%);"></div>
+
+                    </div>
+
+                    <div class="col-sm-12 formly-card nav-tabs-panel" ng-show="_tab._i === 1">
+
+                        <div ng-include="'resources/views/project/app/language.html'" style="height: calc(100%);"></div>
+
+                    </div>
+
+                    <div class="col-sm-12 formly-card nav-tabs-panel" ng-show="_tab._i === 2">
+
+                        <div ng-include="'resources/views/project/app/form.html'" style="height: calc(100%);"></div>
+
+                    </div>
+
+                    <div class="col-sm-12 formly-card nav-tabs-panel" ng-show="_tab._i === 3">
+
+                        <div ng-include="'resources/views/project/app/operation.html'"
+                             style="height: calc(100%);"></div>
+
+                    </div>
+
+                    <div class="col-sm-12 formly-card nav-tabs-panel" ng-show="_tab._i === 4">
+
+                        <div ng-include="'resources/views/project/app/database.html'" style="height: calc(100%);"></div>
+
+                    </div>
+
+                    <div class="col-sm-12 formly-card nav-tabs-panel" ng-show="_tab._i === 5">
+
+                        <div ng-include="'resources/views/project/app/entity.html'"></div>
+
+                        <div class="col-sm-12">
+
+                            <div class="form-group">
+                                <label class="control-label">Type: "Apply My Changes, Please" to enable button</label>
+                                <input placeholder="Type: Apply My Changes, Please" class="form-control"
+                                       ng-model="applyAll">
+                                <span class="form-control--bar"></span>
+                            </div>
+
+                            <button class="btn btn-danger" ng-disabled="applyAll !== 'Apply My Changes, Please'">Apply
+                                Changes
+                            </button>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <hr>
+                        </div>
+
+                        <div class="col-sm-12">
+
+                            <div class="form-group">
+                                <label class="control-label">Type: "Delete All, Please" to enable button</label>
+                                <input placeholder="Type: Delete All, Please" class="form-control" ng-model="deleteAll">
+                                <span class="form-control--bar"></span>
+                            </div>
+
+                            <button class="btn btn-danger" ng-disabled="deleteAll !== 'Delete All, Please'">Delete All
+                            </button>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
